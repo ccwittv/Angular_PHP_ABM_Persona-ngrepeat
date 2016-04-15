@@ -75,10 +75,21 @@ app.controller('controlGrilla', function($scope, $http) {
 
 
 
-$http.post("PHP/nexo.php",{accion :"borrar",persona:persona},{headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+$http.post("PHP/nexo.php",{datos:{accion :"borrar",persona:persona}},{headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
  .then(function(respuesta) {       
          //aca se ejetuca si retorno sin errores        
          console.log(respuesta.data);
+         $http.get('PHP/nexo.php', { params: {accion :"traer"}})
+        .then(function(respuesta) {       
+
+         $scope.ListadoPersonas = respuesta.data.listado;
+         console.log(respuesta.data);
+
+        },function errorCallback(response) {
+         $scope.ListadoPersonas= [];
+          console.log( response);
+        
+          });
 
     },function errorCallback(response) {        
         //aca se ejecuta cuando hay errores

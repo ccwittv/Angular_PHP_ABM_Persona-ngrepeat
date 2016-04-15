@@ -35,9 +35,9 @@ else{
         console.log( response);           
     });
 	*/
-
-	echo "<br>";
-	var_dump($_POST);
+//Datos pasados por post
+//	echo "<br>";
+//	var_dump($_POST);
 
 
 
@@ -57,10 +57,23 @@ else{
      		console.log( response);     			
  	  });*/
 
+//
 	$DatosPorPost = file_get_contents("php://input");
 	$respuesta = json_decode($DatosPorPost);
 	var_dump($respuesta);
-
+    switch ($respuesta->datos->accion) {
+    	case 'borrar': 		
+    	    echo "voy a borrar";
+    	    Persona::BorrarPersona($respuesta->datos->persona); 
+    		break;
+    	case 'insertar':
+    	    echo "voy a guardar";
+    	    Persona::InsertarPersona($respuesta->datos->persona);
+    	    break;
+    	default:
+    		# code...
+    		break;
+    }
 
 	//echo $respuesta->datos->persona->nombre;
 
