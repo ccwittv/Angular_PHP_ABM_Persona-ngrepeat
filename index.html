@@ -14,8 +14,10 @@
 	<link rel="stylesheet" type="text/css" href="css/animacion.css">
 	<!--final de Estilos-->    
 
-
- 	<script SRC="bower_components/angular/angular.min.js" TYPE="text/javascript"></script>
+    <script SRC="bower_components/angular/angular.min.js" TYPE="text/javascript"></script>
+    <!--<script data-require="angular.js@1.3.13" data-semver="1.3.13" src="https://code.angularjs.org/1.3.13/angular.js"></script>-->
+    <script SRC="bower_components/angular-ui-router/release/angular-ui-router.min.js" TYPE="text/javascript"></script>
+     <!--<script data-require="ui-router@0.2.13" data-semver="0.2.13" src="//rawgit.com/angular-ui/ui-router/0.2.13/release/angular-ui-router.js"></script>-->
  	<script SRC="js/app.js" TYPE="text/javascript"></script>
 	
 </head>
@@ -27,19 +29,19 @@
  
               <ul class="nav nav-tabs">
 		         <li  class="btn btn-info animated bounceInLeft" >
-		         	<a href="index.html">
+		         	<a ui-sref="menu">
 		         		 <span class="glyphicon glyphicon-list-alt">&nbsp;</span>
 		         		 Inicio 
 		         	</a>
 		         </li>
 		         <li class="btn btn-info animated bounceInLeft" >
-		         	<a href="formAlta.html">
+		         	<a ui-sref="alta">
 		         		<span class="glyphicon glyphicon-plus-sign">&nbsp;</span>
 		         		Alta
 		         	</a>
 		         </li>
 		         <li  class="btn btn-info animated bounceInLeft" >
-		         	<a href="formGrilla.html"> 
+		         	<a ui-sref="grilla"> 
 		         		<span class="glyphicon glyphicon-th" >&nbsp;</span>
 		         			Grilla</a>
 		         		</li>
@@ -49,28 +51,8 @@
 
 	
 	  <div class="container">
-		<div class="page-header">
-			<center><h1>ABM - PHP - Angular</h1> </center>     
-		</div>
-	  	 
-		           
-					<div class="CajaInicio animated bounceInRight">
-							<h1>PERSONAS</h1>
-						
-							<form id="FormIngreso">
- 										
-									    <a href="formAlta.html" class="list-group-item  list-group-item list-group-item-info">
-									      <h4 class="list-group-item-heading">Alta de Personas</h4>
-									    </a>
-										
-										<a href="formGrilla.html" class="list-group-item  list-group-item list-group-item-info">
-									      <h4 class="list-group-item-heading">Grilla de Personas</h4>
-									    </a>
-									
-									  </div>
-									
-							</form>
-						</div>
-		</div>
+	  	<!--<ui-view > </ui-view>-->
+		<div ui-view ></div>
+	  </div>
 </body>
 </html>

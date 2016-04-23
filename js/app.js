@@ -1,11 +1,55 @@
+var app = angular.module('ABMangularPHP', ['ui.router']);
+app.config(function($stateProvider,$urlRouterProvider) {
+   $stateProvider
+   .state('menu',
+   {
+    templateUrl:"templatemenu.html",
+    URL:'/menu',
+    controller:'controlMenu'
+   }
+   )
+   .state('alta',
+   {
+    templateUrl:"templateusuario.html",
+    URL:'/alta',
+    controller:'controlAlta'
+   }
+   )
+   .state('grilla',
+   {
+    templateUrl:"templategrilla.html",
+    URL:'/grilla',
+    controller:'controlGrilla'
+   }
+   )
+   .state('modificar',
+   {
+    templateUrl:"templateusuario.html",
+    //url:'/modificar/:id', /* de esta forma el id se visualiza en la barra de direcciones web*/
+    url:'/modificar',
+    params: { id: null}, /*de esta forma no se visualiza el id en la barra de direcciones web y es mas seguro*/
+    controller:'controlModificar'
+    /*controller: function($scope, $stateParams) {
+                  $scope.DatoTest="**modificar**";
 
-var app = angular.module('ABMangularPHP', []);
-
+                  console.log($stateParams);
+                //inicio las variables
+                  $scope.persona={};
+                  $scope.persona.nombre= "damian" ;
+                  $scope.persona.dni= "666" ;
+                  $scope.persona.apellido= "thorp" ;
+                  $scope.persona.foto="sinfoto";
+                  console.log($scope);
+                  //console.log($http);
+                }*/
+   }
+   )
+   $urlRouterProvider.otherwise('/menu');
+});
 
 app.controller('controlMenu', function($scope, $http) {
   $scope.DatoTest="**Menu**";
 });
-
 
 app.controller('controlAlta', function($scope, $http) {
   $scope.DatoTest="**alta**";
@@ -38,6 +82,19 @@ app.controller('controlAlta', function($scope, $http) {
   }
 });
 
+app.controller('controlModificar', function($scope, $http, $stateParams) {
+  $scope.DatoTest="**modificar**";
+
+  console.log($stateParams);
+//inicio las variables
+  $scope.persona={};
+  $scope.persona.nombre= "damian" ;
+  $scope.persona.dni= $stateParams.id ;
+  $scope.persona.apellido= "thorp" ;
+  $scope.persona.foto="sinfoto";
+  console.log($scope);
+  console.log($http);
+});
 
 app.controller('controlGrilla', function($scope, $http) {
   	$scope.DatoTest="**grilla**";
@@ -115,10 +172,10 @@ $http.post("PHP/nexo.php",{datos:{accion :"borrar",persona:persona}},{headers: {
 
 
 
- 	$scope.Modificar=function(id){
+ 	/*$scope.Modificar=function(id){
  		
  		console.log("Modificar"+id);
- 	}
+ 	}*/
 
 
 
