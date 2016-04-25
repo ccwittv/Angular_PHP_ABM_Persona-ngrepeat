@@ -44,6 +44,13 @@ app.config(function($stateProvider,$urlRouterProvider) {
                 }*/
    }
    )
+   .state('guarde_y_vuelve',
+       {
+        templateUrl:"templategrilla.html",
+        URL:'/grilla',
+        controller:'controlGrilla'
+       }
+   )
    $urlRouterProvider.otherwise('/menu');
 });
 
