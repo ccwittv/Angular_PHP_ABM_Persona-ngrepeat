@@ -4,20 +4,28 @@ include "clases/Personas.php";
 // $_GET['accion'];
 if(isset($_GET['accion']))
 {
-	$accion=$_GET['accion'];
-	if($accion=="traer")
-	{
-		$respuesta= array();
-		//$respuesta['listado']=Persona::TraerPersonasTest();
-		$respuesta['listado']=Persona::TraerTodasLasPersonas();
-		//var_dump(Persona::TraerTodasLasPersonas());
-		$arrayJson = json_encode($respuesta);
-		echo  $arrayJson;
-	}
-
-
-	
-
+	$accion=$_GET['accion'];	
+	switch ($accion) {
+		case 'traer':
+			$respuesta= array();
+			//$respuesta['listado']=Persona::TraerPersonasTest();
+			$respuesta['listado']=Persona::TraerTodasLasPersonas();
+			//var_dump(Persona::TraerTodasLasPersonas());
+			$arrayJson = json_encode($respuesta);
+			echo  $arrayJson;
+			break;
+		case 'traerUnaPersona':
+			$respuesta= array();
+			//$respuesta['listado']=Persona::TraerPersonasTest();
+			$respuesta['persona']=Persona::TraerUnaPersona($_GET['id']);
+			//var_dump(Persona::TraerTodasLasPersonas());
+			$arrayJson = json_encode($respuesta);
+			echo  $arrayJson;
+		    break;
+		default:
+			# code...
+			break;
+	}	
 }
 else{
 //var_dump($_REQUEST);
@@ -70,6 +78,10 @@ else{
     	    echo "voy a guardar";
     	    Persona::InsertarPersona($respuesta->datos->persona);
     	    break;
+    	case 'modificar':
+    	    echo "voy a modificar";
+    	    Persona::ModificarPersona($respuesta->datos->persona);
+    	    break;    
     	default:
     		# code...
     		break;

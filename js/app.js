@@ -56,10 +56,10 @@ app.controller('controlAlta', function($scope, $http) {
 
 //inicio las variables
   $scope.persona={};
-  $scope.persona.nombre= "natalia" ;
+  /*$scope.persona.nombre= "natalia" ;
   $scope.persona.dni= "12312312" ;
-  $scope.persona.apellido= "natalia" ;
-  $scope.persona.foto="sinfoto";
+  $scope.persona.apellido= "natalia" ;*/
+  $scope.persona.foto="pordefecto.png";
 
 
   $scope.Guardar=function(){
@@ -85,15 +85,44 @@ app.controller('controlAlta', function($scope, $http) {
 app.controller('controlModificar', function($scope, $http, $stateParams) {
   $scope.DatoTest="**modificar**";
 
+  /*console.log($scope);
   console.log($stateParams);
-//inicio las variables
-  $scope.persona={};
-  $scope.persona.nombre= "damian" ;
-  $scope.persona.dni= $stateParams.id ;
-  $scope.persona.apellido= "thorp" ;
-  $scope.persona.foto="sinfoto";
-  console.log($scope);
-  console.log($http);
+  console.log($http);*/
+
+  $http.get('PHP/nexo.php', { params: {accion :"traerUnaPersona",id:$stateParams.id}})
+        .then(function(respuesta) {       
+         //$scope.ListadoPersonas = respuesta.data.listado;
+         console.log(respuesta.data);
+         //inicio las variables
+         $scope.persona={};
+         $scope.persona.nombre= respuesta.data.persona.nombre ;
+         $scope.persona.dni= respuesta.data.persona.dni;
+         $scope.persona.apellido= respuesta.data.persona.apellido ;
+         $scope.persona.foto= respuesta.data.persona.foto;
+         $scope.persona.id= respuesta.data.persona.id;
+         console.log($scope); 
+
+        },function errorCallback(response) {
+         $scope.persona= [];
+          console.log( response);
+        
+          });
+
+  $scope.Guardar=function()
+    {
+      console.log("persona a modificar:");
+      console.log($scope.persona);
+      $http.post('PHP/nexo.php', { datos: {accion :"modificar",persona:$scope.persona}})
+      .then(function(respuesta) {       
+           //aca se ejetuca si retorno sin errores        
+           console.log(respuesta.data);
+
+      },function errorCallback(response) {        
+          //aca se ejecuta cuando hay errores
+          console.log( response);           
+      });
+    }
+  
 });
 
 app.controller('controlGrilla', function($scope, $http) {
