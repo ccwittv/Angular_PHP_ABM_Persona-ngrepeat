@@ -44,15 +44,61 @@ app.config(function($stateProvider,$urlRouterProvider) {
                 }*/
    }
    )
-   .state('guarde_y_vuelve',
+   .state('guardevuelve',
        {
         templateUrl:"templategrilla.html",
-        URL:'/grilla',
-        controller:'controlGrilla'
+        url:'/guardevuelve/:id,:nombre,:apellido,:dni,:foto',
+        controller:'controlGuardeVuelve'
        }
    )
    $urlRouterProvider.otherwise('/menu');
 });
+
+app.controller('controlGuardeVuelve', function($scope, $http, $stateParams) 
+    {
+      $scope.DatoTest="**GUARDE Y VUELVE**";
+      console.log($scope);
+      console.log($stateParams);
+      console.log($http);
+      
+      function guardar(persona)
+       {
+          console.log("persona a guardar:");
+          console.log($scope.persona);
+          $http.post('PHP/nexo.php', { datos: {accion :"insertar",persona:$scope.persona}})
+          .then(function(respuesta) {       
+               //aca se ejetuca si retorno sin errores        
+               console.log(respuesta.data);
+
+          },function errorCallback(response) {        
+              //aca se ejecuta cuando hay errores
+              console.log( response);           
+          });
+      }
+
+      function hola()
+       { 
+         alert('HOLA!!!!')
+       };
+      
+      //guardar();
+
+    /*$scope.Guardar=function()
+    {
+      console.log("persona a modificar:");
+      console.log($scope.persona);
+      $http.post('PHP/nexo.php', { datos: {accion :"modificar",persona:$scope.persona}})
+      .then(function(respuesta) {       
+           //aca se ejetuca si retorno sin errores        
+           console.log(respuesta.data);
+
+      },function errorCallback(response) {        
+          //aca se ejecuta cuando hay errores
+          console.log( response);           
+      });
+    }*/
+
+    });
 
 app.controller('controlMenu', function($scope, $http) {
   $scope.DatoTest="**Menu**";

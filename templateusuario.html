@@ -21,7 +21,14 @@
 
 				<a class="btn btn-info " name="guardar" ng-click="Guardar()" ><span class="glyphicon glyphicon-save">&nbsp;</span>Guardar</a>
 
-				<a class="btn btn-info " name="guardar" ui-sref="guarde_y_vuelve()"><span class="glyphicon glyphicon-save">&nbsp;</span>Guardar y volver a la grilla</a>
+				<!--<a class="btn btn-info " id="guardevuelve" name="guardevuelve" ui-sref="guardevuelve({ portfolioId: 3 })"><span class="glyphicon glyphicon-save">&nbsp;</span>Guardar y volver a la grilla</a>-->
+
+				<a class="btn btn-info " id="guardevuelve" name="guardevuelve" ui-sref="guardevuelve({ id: persona.id,
+																									   nombre: persona.nombre,
+																									   apellido: persona.apellido,
+																									   dni: persona.dni,  
+																									   foto: persona.foto})">
+				  <span class="glyphicon glyphicon-save">&nbsp;</span>Guardar y volver a la grilla</a>
 					
 				<input type="hidden" value="" id="idParaModificar" name="agregar" />
 				<input type="hidden" value="" id="hdnAgregar" name="agregar" />
