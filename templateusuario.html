@@ -6,11 +6,13 @@
 			<h1> <!--?php echo $titulo; ?-->titulo </h1>
 
 			<form id="FormIngreso"  enctype="multipart/form-data" >
-				<input type="text" name="apellido" ng-model="persona.apellido" placeholder="ingrese apellido" value="" />
-				<span id="lblApellido" style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*
-				</span>
-				<input type="text" name="nombre" ng-model="persona.nombre" placeholder="ingrese nombre" value="" /> <span id="lblNombre" style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*</span>
-				<input type="text" name="dni" ng-model="persona.dni" placeholder="ingrese dni" value=""     /> 
+				<input type="text" name="apellido" ng-model="persona.apellido" placeholder="ingrese apellido" value="" required="" />				
+				<span id="lblApellido" style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*</span>
+				
+				<input type="text" name="nombre" ng-model="persona.nombre" placeholder="ingrese nombre" value="" required="" />
+				<span id="lblNombre" style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*</span>
+
+				<input type="text" name="dni" ng-model="persona.dni" placeholder="ingrese dni" value="" required="" /> 
 				<span id="lblDni" style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*</span>
 				
 
@@ -21,13 +23,12 @@
 
 				<a class="btn btn-info " name="guardar" ng-click="Guardar()" ><span class="glyphicon glyphicon-save">&nbsp;</span>Guardar</a>
 
-				<!--<a class="btn btn-info " id="guardevuelve" name="guardevuelve" ui-sref="guardevuelve({ portfolioId: 3 })"><span class="glyphicon glyphicon-save">&nbsp;</span>Guardar y volver a la grilla</a>-->
-
-				<a class="btn btn-info " id="guardevuelve" name="guardevuelve" ui-sref="guardevuelve({ id: persona.id,
-																									   nombre: persona.nombre,
-																									   apellido: persona.apellido,
-																									   dni: persona.dni,  
-																									   foto: persona.foto})">
+				<a class="btn btn-info " id="guardevuelve" name="guardevuelve" 
+				   ui-sref="guardevuelve({ id: persona.id,
+										   nombre: persona.nombre,
+										   apellido: persona.apellido,
+										   dni: persona.dni,  
+										   foto: persona.foto })">
 				  <span class="glyphicon glyphicon-save">&nbsp;</span>Guardar y volver a la grilla</a>
 					
 				<input type="hidden" value="" id="idParaModificar" name="agregar" />
