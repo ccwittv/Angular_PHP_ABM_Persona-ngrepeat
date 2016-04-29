@@ -1,4 +1,4 @@
-var app = angular.module('ABMangularPHP', ['ui.router']);
+var app = angular.module('ABMangularPHP', ['ui.router', 'angularFileUpload']);
 app.config(function($stateProvider,$urlRouterProvider) {
    $stateProvider
    .state('menu',
@@ -179,9 +179,12 @@ app.controller('controlMenu', function($scope, $http)
       $scope.DatoTest="**Menu**";
   });
 
-app.controller('controlAlta', function($scope, $http) 
+app.controller('controlAlta', function($scope, $http, FileUploader) 
  {
       $scope.DatoTest="**alta**";
+      
+      $scope.uploader = new FileUploader({url: 'PHP/nexo.php'});
+      $scope.uploader.queueLimit = 10; // indico cuantos archivos permito cargar
 
     //inicio las variables
       $scope.persona={};
@@ -193,6 +196,7 @@ app.controller('controlAlta', function($scope, $http)
 
       $scope.Guardar=function(){
 
+        $scope.uploader.uploadAll();
 
       	console.log("persona a guardar:");
         console.log($scope.persona);
